@@ -1,7 +1,10 @@
 from flask import Flask, request
 from flask import Flask, request, render_template
 from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from test_model import Person
 
+import requests
 
 
 app = Flask(__name__)
@@ -40,7 +43,6 @@ def try_rest():
     response_json = {"response_json": request_json}
     return jsonify(response_json)
 
-import requests
 
 headers = {
     'Content-Type': 'application/json',
@@ -50,32 +52,19 @@ name = '{"name:dummy": "age:21", "friends:[dummy1,dummy2,dummy3], "is man:false"
 
 response = requests.post('https://127.0.0.1:5000/try_rest', headers=headers, name=name)
 
- 
- def param_func():
-    print('引数関数の中')
 
-def body_func(param_func):
-	 param_func()
 
- body_func(param_func)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
- def body_func():
-	 def return_func():
-		 print('戻り値関数の中')
-	 return return_func
+@app.route('/person_search')
+def person_search():
+    return render_template('./person_search.html')
 
- return_func = body_func()
- return_func() 
 
-def body_func(param_func):
-def return_func():
-    param_func()
-print('引数関数実行後に文字列を出力')
-return return_func
-return_func = body_func(param_func)
-return_func() 
-
-@body_func
-def test_func():
-	print('これはテスト関数です')
-test_func()
+@app.route('/person_result')
+def person_result():
+    search_size = request.args.get("search_size")
+    persons = db.session.query(Person).filter(Person.size > search_size)
+    return render_template('./person_result.html', persons=persons, search_size=search_size)
