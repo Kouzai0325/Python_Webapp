@@ -1,10 +1,14 @@
 <html>
     <head>
+        <script src={{ url_for("static", filename="try_js.js") }}></script>
+
         <title>テストhtml</title>
     </head>
     <body>
         <p>これはテストhtmlです。</p>
         <table>
+            <table id="table_id">
+
             <tr>
                 <th>ヘッダ１</th>
                 <th>ヘッダ２</th>
@@ -16,5 +20,7 @@
                 <td>内容３</td>
             </tr>
         </table>
+        <input type="button" name="button" value="ボタン" onclick="change_table();">
+
     </body>
 </html>
