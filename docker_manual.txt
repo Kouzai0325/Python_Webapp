@@ -1,0 +1,29 @@
+Dockerコマンド一覧
+1#docker build [オプション] パス | URL | -  ##Dockerイメージをビルドする
+Dockerfile と「コンテクスト 」から Docker イメージを構築するコマンド
+
+#--tag  ##名前と、オプションでタグを指定
+
+2#docker images           #作成されたDockerイメージを確認する
+
+3# docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]   ##対象イメージに元イメージを参照するタグを作成
+
+4#docker rmi [OPTIONS] IMAGE [IMAGE...]    ##一つまたは複数のイメージを削除する
+
+5#docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+##新しいコンテナでコマンド実行
+--publish        ##publishは、コンテナのportをホストマシンに公開するために利用
+-d              ##ホスト・デバイスをコンテナに追加
+-p              ##publish ポートの公開
+
+6#docker ps  ##コンテナを一覧表示
+-a           ##すべてのコンテナを表示
+
+7# docker stop [OPTIONS] CONTAINER [CONTAINER...]
+##一つまたは複数の実行中コンテナを停止
+
+8#docker restart [OPTIONS] CONTAINER [CONTAINER...]
+##一つまたは複数のコンテナを再起動
+
+9#docker rm [OPTIONS] CONTAINER [CONTAINER...]
+1つまたは複数のコンテナを削除
