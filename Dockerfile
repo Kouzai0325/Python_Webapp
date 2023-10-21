@@ -9,3 +9,4 @@ Copy app.py app.py
 Copy test_db test_db
 Copy test_model.py test_model.py
 CMD [ "python3","-m","flask","run","--host=0.0.0.0" ]
+
