@@ -28,4 +28,3 @@ Dockerfile と「コンテクスト 」から Docker イメージを構築する
 9#docker rm [OPTIONS] CONTAINER [CONTAINER...]
 1つまたは複数のコンテナを削除
 
-
